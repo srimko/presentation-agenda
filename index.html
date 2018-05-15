@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Présentation - </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <!-- <a href="#" class="brand-logo">Logo</a> -->
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="">Item 1</a></li>
+          <li><a href="">Item 2</a></li>
+          <li><a href="">Item 3</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="app" class="container">
+      <div class="row">
+        <div class="col s12">
+          <table>
+            <thead>
+              <tr>
+                  <th>id</th>
+                  <th>Titre</th>
+                  <th>Formateur</th>
+                  <th>Note</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr v-for="item in items">
+                <td>{{item._id}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.former}}</td>
+                <td>
+                  <a href="#!" class="collection-item">
+                    <span class="new badge " data-badge-caption="">{{item.note}}</span>
+                  </a>
+                  <span class="new badge light-blue" data-badge-caption="">+</span>
+                  <span class="new badge red" data-badge-caption="">-</span> 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        items: []
+      },
+      mounted: function () {
+        var self = this;
+        $.ajax({
+            url: 'data/data.json',
+            method: 'GET',
+            success: function (data) {
+                self.items = data;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+      }
+    })
+    </script>
+  </body>
+</html>
