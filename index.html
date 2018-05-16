@@ -38,8 +38,8 @@
                   <a href="#!" class="collection-item">
                     <span class="new badge " data-badge-caption="">{{item.note}}</span>
                   </a>
-                  <span class="new badge light-blue" data-badge-caption="">+</span>
-                  <span class="new badge red" data-badge-caption="">-</span> 
+                  <a class="waves-effect waves-light btn btn-floating btn-small light-blue" v-on:click="addNote(item)"><i class="material-icons">exposure_plus_1</i></a>
+                  <a class="waves-effect waves-light btn btn-floating btn-small red" v-on:click="removeNote(item)"><i class="material-icons">exposure_neg_1</i></a>
                 </td>
               </tr>
             </tbody>
@@ -51,6 +51,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script type="text/javascript">
     var app = new Vue({
@@ -71,6 +72,18 @@
                 console.log(error);
             }
         });
+      },
+      methods: {
+        addNote: function(item, event) {
+          if(item.note < 6) {
+            item.note++
+          }
+        },
+        removeNote: function(item, event) {
+          if(item.note > 0) {
+            item.note--
+          }
+        }
       }
     })
     </script>
